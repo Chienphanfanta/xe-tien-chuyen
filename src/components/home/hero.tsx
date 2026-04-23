@@ -28,10 +28,10 @@ export function Hero() {
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <a
-            href="#tuyen"
+            href="/chuyen-di"
             className="inline-flex h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-primary shadow-lg transition hover:bg-white/95 sm:h-13 sm:text-base"
           >
-            Xem 8 tuyến đang chạy
+            Xem chuyến đang mở
           </a>
           <a
             href="#cach-hoat-dong"
