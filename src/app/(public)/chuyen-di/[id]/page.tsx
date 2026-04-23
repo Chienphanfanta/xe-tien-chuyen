@@ -161,7 +161,7 @@ export default async function PublicTripDetailPage({
             <ShieldCheck className="size-4 text-secondary" aria-hidden />
             <h2 className="text-base font-semibold">Thông tin vận hành</h2>
           </div>
-          <dl className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2 sm:text-base">
+          <div className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2 sm:text-base">
             <InfoRow icon={CarFront} label="Đơn vị vận tải" value={SITE.name} />
             <InfoRow icon={Users} label="Tài xế" value={driverName} />
             <InfoRow
@@ -198,7 +198,7 @@ export default async function PublicTripDetailPage({
                 </a>
               }
             />
-          </dl>
+          </div>
           <p className="mt-4 text-xs text-muted-foreground">
             Thông tin hiển thị theo Điều 35 Nghị định 10/2020/NĐ-CP.
           </p>
@@ -271,8 +271,8 @@ function InfoRow({
     <div className="flex items-start gap-2">
       <Icon className="mt-0.5 size-4 shrink-0 text-muted-foreground" aria-hidden />
       <div className="min-w-0 flex-1">
-        <dt className="text-xs text-muted-foreground">{label}</dt>
-        <dd className="font-medium">{value}</dd>
+        <div className="text-xs text-muted-foreground">{label}</div>
+        <div className="font-medium">{value}</div>
       </div>
     </div>
   );

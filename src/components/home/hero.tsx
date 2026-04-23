@@ -41,11 +41,11 @@ export function Hero() {
           </a>
         </div>
 
-        <dl className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-3">
           <HeroFeature icon={MapPin} label="Đón tận nhà" />
           <HeroFeature icon={Clock} label="Đúng giờ khởi hành" />
           <HeroFeature icon={ShieldCheck} label="Tài xế xác minh" />
-        </dl>
+        </div>
       </div>
     </section>
   );

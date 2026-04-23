@@ -277,7 +277,7 @@ export default async function TripDetailPage({
                     {BOOKING_STATUS_LABEL[b.status]}
                   </span>
                 </div>
-                <dl className="mt-3 grid grid-cols-1 gap-1 text-sm sm:grid-cols-2 sm:gap-3">
+                <div className="mt-3 grid grid-cols-1 gap-1 text-sm sm:grid-cols-2 sm:gap-3">
                   <InfoLine label="Số ghế" value={`${b.seats} ghế`} />
                   <InfoLine
                     label="Tổng tiền"
@@ -285,7 +285,7 @@ export default async function TripDetailPage({
                   />
                   <InfoLine label="Điểm đón" value={b.pickup_address} />
                   <InfoLine label="Điểm trả" value={b.dropoff_address} />
-                </dl>
+                </div>
                 {b.note && (
                   <p className="mt-2 text-sm text-muted-foreground">
                     <span className="font-medium text-foreground">Ghi chú: </span>
@@ -339,8 +339,8 @@ function InfoRow({
 function InfoLine({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="text-xs text-muted-foreground">{label}</dt>
-      <dd className="font-medium">{value}</dd>
+      <div className="text-xs text-muted-foreground">{label}</div>
+      <div className="font-medium">{value}</div>
     </div>
   );
 }

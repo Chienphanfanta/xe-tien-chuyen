@@ -76,21 +76,21 @@ export function RoutesGrid({ routes }: { routes: HomeRoute[] }) {
                 </span>
               </div>
 
-              <dl className="mt-4 flex items-center gap-4 border-t border-border pt-3 text-xs text-muted-foreground sm:text-sm">
+              <div className="mt-4 flex items-center gap-4 border-t border-border pt-3 text-xs text-muted-foreground sm:text-sm">
                 {r.distance_km !== null && (
                   <div className="flex items-center gap-1">
-                    <dt className="sr-only">Cự ly</dt>
-                    <dd>{r.distance_km} km</dd>
+                    <span className="sr-only">Cự ly</span>
+                    <span>{r.distance_km} km</span>
                   </div>
                 )}
                 {r.duration_minutes !== null && (
                   <div className="flex items-center gap-1">
-                    <dt className="sr-only">Thời gian</dt>
+                    <span className="sr-only">Thời gian</span>
                     <Clock className="size-3.5" aria-hidden />
-                    <dd>{formatDuration(r.duration_minutes)}</dd>
+                    <span>{formatDuration(r.duration_minutes)}</span>
                   </div>
                 )}
-              </dl>
+              </div>
             </article>
           </li>
         ))}

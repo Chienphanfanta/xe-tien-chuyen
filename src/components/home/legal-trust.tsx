@@ -14,15 +14,15 @@ export function LegalTrust() {
             Vận hành đúng quy định pháp luật
           </h2>
 
-          <dl className="mt-6 space-y-4 text-sm sm:text-base">
+          <div className="mt-6 space-y-4 text-sm sm:text-base">
             <div className="flex gap-3">
               <FileCheck
                 className="mt-0.5 size-5 shrink-0 text-secondary"
                 aria-hidden
               />
               <div>
-                <dt className="font-semibold">Cơ sở pháp lý</dt>
-                <dd className="mt-0.5 text-muted-foreground">{LEGAL.basis}</dd>
+                <div className="font-semibold">Cơ sở pháp lý</div>
+                <div className="mt-0.5 text-muted-foreground">{LEGAL.basis}</div>
               </div>
             </div>
             <div className="flex gap-3">
@@ -31,11 +31,11 @@ export function LegalTrust() {
                 aria-hidden
               />
               <div>
-                <dt className="font-semibold">Mô hình hoạt động</dt>
-                <dd className="mt-0.5 text-muted-foreground">{LEGAL.model}</dd>
+                <div className="font-semibold">Mô hình hoạt động</div>
+                <div className="mt-0.5 text-muted-foreground">{LEGAL.model}</div>
               </div>
             </div>
-          </dl>
+          </div>
         </div>
 
         <div className="flex flex-col justify-center rounded-2xl bg-secondary p-6 text-secondary-foreground sm:p-8">

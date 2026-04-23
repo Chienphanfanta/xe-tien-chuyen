@@ -121,7 +121,7 @@ export default async function BookingSuccessPage({
 
         <section className="mt-5 rounded-2xl border border-border bg-background p-5 sm:p-6">
           <h2 className="text-base font-semibold">Thông tin chuyến</h2>
-          <dl className="mt-3 grid grid-cols-1 gap-3 text-sm sm:grid-cols-2 sm:text-base">
+          <div className="mt-3 grid grid-cols-1 gap-3 text-sm sm:grid-cols-2 sm:text-base">
             <InfoRow
               icon={MapPin}
               label="Hành trình"
@@ -169,27 +169,27 @@ export default async function BookingSuccessPage({
                 </a>
               }
             />
-          </dl>
+          </div>
         </section>
 
         <section className="mt-5 rounded-2xl border border-border bg-background p-5 sm:p-6">
           <h2 className="text-base font-semibold">Điểm đón & trả</h2>
-          <dl className="mt-3 flex flex-col gap-3 text-sm sm:text-base">
+          <div className="mt-3 flex flex-col gap-3 text-sm sm:text-base">
             <div>
-              <dt className="text-xs text-muted-foreground">Điểm đón</dt>
-              <dd className="font-medium">{booking.pickup_address}</dd>
+              <div className="text-xs text-muted-foreground">Điểm đón</div>
+              <div className="font-medium">{booking.pickup_address}</div>
             </div>
             <div>
-              <dt className="text-xs text-muted-foreground">Điểm trả</dt>
-              <dd className="font-medium">{booking.dropoff_address}</dd>
+              <div className="text-xs text-muted-foreground">Điểm trả</div>
+              <div className="font-medium">{booking.dropoff_address}</div>
             </div>
             {booking.note && (
               <div>
-                <dt className="text-xs text-muted-foreground">Ghi chú</dt>
-                <dd>{booking.note}</dd>
+                <div className="text-xs text-muted-foreground">Ghi chú</div>
+                <div>{booking.note}</div>
               </div>
             )}
-          </dl>
+          </div>
         </section>
 
         <section className="mt-5 rounded-2xl border border-primary/30 bg-primary/5 p-5 sm:p-6">
@@ -241,8 +241,8 @@ function InfoRow({
     <div className="flex items-start gap-2">
       <Icon className="mt-0.5 size-4 shrink-0 text-muted-foreground" aria-hidden />
       <div className="min-w-0 flex-1">
-        <dt className="text-xs text-muted-foreground">{label}</dt>
-        <dd className="font-medium">{value}</dd>
+        <div className="text-xs text-muted-foreground">{label}</div>
+        <div className="font-medium">{value}</div>
       </div>
     </div>
   );
