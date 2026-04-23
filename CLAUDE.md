@@ -9,7 +9,7 @@ Revenue: hoa hồng 10-12% trên mỗi chuyến thành công.
 Giai đoạn: MVP để pilot + kêu gọi đầu tư, KHÔNG submit store.
 
 ## Tech Stack
-- Framework: Next.js 15 App Router + TypeScript strict mode
+- Framework: Next.js 16 App Router + TypeScript strict mode
 - UI: Tailwind CSS + shadcn/ui (src/components/ui/)
 - State: Zustand cho client state, Server Components cho server data
 - Data fetching: TanStack Query v5 cho client; async Server Component khi có thể
