@@ -7,7 +7,17 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "db:types": "supabase gen types typescript --project-id pgynuhpnhqkbnxtgmpnn > src/types/supabase.ts"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
+      "@base-ui/react",
+      "sharp",
+      "supabase",
+      "msw"
+    ]
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
@@ -47,6 +57,7 @@
     "eslint-config-next": "16.2.4",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.7.2",
+    "supabase": "^2.93.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
