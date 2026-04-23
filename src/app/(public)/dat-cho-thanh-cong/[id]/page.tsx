@@ -14,6 +14,13 @@ import { SiteFooter } from "@/components/home/site-footer";
 import { SiteHeader } from "@/components/home/site-header";
 import { HOTLINE_DISPLAY, HOTLINE_TEL, SITE } from "@/constants/site";
 import { createClient } from "@/lib/supabase/server";
+import type {
+  Booking,
+  Profile,
+  Route,
+  Trip,
+  Vehicle,
+} from "@/types/database";
 
 export const metadata: Metadata = {
   title: "Đặt chỗ thành công",
@@ -21,28 +28,30 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-type BookingSummary = {
-  id: string;
-  seats: number;
-  passenger_name: string;
-  passenger_phone: string;
-  pickup_address: string;
-  dropoff_address: string;
-  total_price: number;
-  note: string | null;
-  created_at: string;
-  trips: {
-    departure_time: string;
-    routes: { origin: string; destination: string; distance_km: number | null } | null;
-    vehicles: {
-      license_plate: string;
-      brand: string | null;
-      model: string | null;
-    } | null;
-    drivers: {
-      profiles: { full_name: string | null } | null;
-    } | null;
-  } | null;
+type BookingSummary = Pick<
+  Booking,
+  | "id"
+  | "seats"
+  | "passenger_name"
+  | "passenger_phone"
+  | "pickup_address"
+  | "dropoff_address"
+  | "total_price"
+  | "note"
+  | "created_at"
+> & {
+  trips:
+    | (Pick<Trip, "departure_time"> & {
+        routes: Pick<
+          Route,
+          "origin" | "destination" | "distance_km"
+        > | null;
+        vehicles: Pick<Vehicle, "license_plate" | "brand" | "model"> | null;
+        drivers: {
+          profiles: Pick<Profile, "full_name"> | null;
+        } | null;
+      })
+    | null;
 };
 
 function formatDateTime(iso: string) {

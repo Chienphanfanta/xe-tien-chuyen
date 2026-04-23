@@ -3,17 +3,12 @@
 import { Loader2 } from "lucide-react";
 import { useActionState } from "react";
 
+import type { TripStatus } from "@/types/database";
+
 import {
   updateTripStatusAction,
   type UpdateTripStatusState,
 } from "./actions";
-
-type TripStatus =
-  | "scheduled"
-  | "boarding"
-  | "in_progress"
-  | "completed"
-  | "cancelled";
 
 const INITIAL_STATE: UpdateTripStatusState = { error: null };
 

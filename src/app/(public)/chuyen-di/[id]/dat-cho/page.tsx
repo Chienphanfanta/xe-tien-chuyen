@@ -6,6 +6,7 @@ import { ArrowLeft, CalendarClock } from "lucide-react";
 import { SiteFooter } from "@/components/home/site-footer";
 import { SiteHeader } from "@/components/home/site-header";
 import { createClient } from "@/lib/supabase/server";
+import type { Route, Trip } from "@/types/database";
 
 import { BookingForm } from "./booking-form";
 
@@ -15,13 +16,15 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-type BookingTrip = {
-  id: string;
-  departure_time: string;
-  available_seats: number;
-  price_per_seat: number;
-  status: "scheduled" | "boarding";
-  routes: { origin: string; destination: string } | null;
+type BookingTrip = Pick<
+  Trip,
+  | "id"
+  | "departure_time"
+  | "available_seats"
+  | "price_per_seat"
+  | "status"
+> & {
+  routes: Pick<Route, "origin" | "destination"> | null;
 };
 
 function formatDateTime(iso: string) {

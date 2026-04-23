@@ -4,6 +4,7 @@ import { ArrowLeft, Car } from "lucide-react";
 
 import { requireDriver } from "@/lib/auth/require-driver";
 import { createClient } from "@/lib/supabase/server";
+import type { Route, Vehicle } from "@/types/database";
 
 import { NewTripForm } from "./new-trip-form";
 
@@ -11,20 +12,15 @@ export const metadata: Metadata = {
   title: "Tạo chuyến mới",
 };
 
-export type RouteOption = {
-  code: string;
-  origin: string;
-  destination: string;
-  base_price: number;
-};
+export type RouteOption = Pick<
+  Route,
+  "code" | "origin" | "destination" | "base_price"
+>;
 
-export type VehicleOption = {
-  id: string;
-  license_plate: string;
-  brand: string | null;
-  model: string | null;
-  seats: number;
-};
+export type VehicleOption = Pick<
+  Vehicle,
+  "id" | "license_plate" | "brand" | "model" | "seats"
+>;
 
 export default async function NewTripPage() {
   const driver = await requireDriver();

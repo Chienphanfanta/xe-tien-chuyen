@@ -15,6 +15,12 @@ import { SiteFooter } from "@/components/home/site-footer";
 import { SiteHeader } from "@/components/home/site-header";
 import { HOTLINE_DISPLAY, HOTLINE_TEL, SITE } from "@/constants/site";
 import { createClient } from "@/lib/supabase/server";
+import type {
+  Profile,
+  Route,
+  Trip,
+  Vehicle,
+} from "@/types/database";
 
 export const metadata: Metadata = {
   title: "Chi tiết chuyến",
@@ -22,30 +28,26 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-type TripStatus = "scheduled" | "boarding" | "in_progress" | "completed" | "cancelled";
-
-type PublicTrip = {
-  id: string;
-  departure_time: string;
-  total_seats: number;
-  available_seats: number;
-  price_per_seat: number;
-  pickup_note: string | null;
-  status: TripStatus;
-  routes: {
-    origin: string;
-    destination: string;
-    distance_km: number | null;
-    duration_minutes: number | null;
-  } | null;
-  vehicles: {
-    license_plate: string;
-    brand: string | null;
-    model: string | null;
-    seats: number;
-  } | null;
+type PublicTrip = Pick<
+  Trip,
+  | "id"
+  | "departure_time"
+  | "total_seats"
+  | "available_seats"
+  | "price_per_seat"
+  | "pickup_note"
+  | "status"
+> & {
+  routes: Pick<
+    Route,
+    "origin" | "destination" | "distance_km" | "duration_minutes"
+  > | null;
+  vehicles: Pick<
+    Vehicle,
+    "license_plate" | "brand" | "model" | "seats"
+  > | null;
   drivers: {
-    profiles: { full_name: string | null } | null;
+    profiles: Pick<Profile, "full_name"> | null;
   } | null;
 };
 

@@ -4,19 +4,22 @@ import { ArrowRight, CalendarClock, Plus, Star, Users } from "lucide-react";
 
 import { requireDriver } from "@/lib/auth/require-driver";
 import { createClient } from "@/lib/supabase/server";
+import type { Route, Trip } from "@/types/database";
 
 export const metadata: Metadata = {
   title: "Bảng điều khiển",
 };
 
-type UpcomingTrip = {
-  id: string;
-  departure_time: string;
-  route_code: string;
-  available_seats: number;
-  total_seats: number;
-  price_per_seat: number;
-  routes: { origin: string; destination: string } | null;
+type UpcomingTrip = Pick<
+  Trip,
+  | "id"
+  | "departure_time"
+  | "route_code"
+  | "available_seats"
+  | "total_seats"
+  | "price_per_seat"
+> & {
+  routes: Pick<Route, "origin" | "destination"> | null;
 };
 
 async function fetchUpcomingTrips(driverId: string): Promise<UpcomingTrip[]> {

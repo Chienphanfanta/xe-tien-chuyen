@@ -5,13 +5,7 @@ import { z } from "zod";
 
 import { requireDriver } from "@/lib/auth/require-driver";
 import { createClient } from "@/lib/supabase/server";
-
-type TripStatus =
-  | "scheduled"
-  | "boarding"
-  | "in_progress"
-  | "completed"
-  | "cancelled";
+import type { TripStatus } from "@/types/database";
 
 const ALLOWED_NEXT: Record<TripStatus, TripStatus[]> = {
   scheduled: ["boarding", "cancelled"],

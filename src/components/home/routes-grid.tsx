@@ -1,13 +1,16 @@
 import { ArrowRight, Clock, MapPin } from "lucide-react";
 
-export type HomeRoute = {
-  code: string;
-  origin: string;
-  destination: string;
-  distance_km: number | null;
-  duration_minutes: number | null;
-  base_price: number;
-};
+import type { Route } from "@/types/database";
+
+export type HomeRoute = Pick<
+  Route,
+  | "code"
+  | "origin"
+  | "destination"
+  | "distance_km"
+  | "duration_minutes"
+  | "base_price"
+>;
 
 function formatVnd(value: number) {
   return value.toLocaleString("vi-VN");

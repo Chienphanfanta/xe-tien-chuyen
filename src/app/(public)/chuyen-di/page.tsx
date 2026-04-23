@@ -5,6 +5,7 @@ import { ArrowRight, CalendarClock, Users } from "lucide-react";
 import { SiteFooter } from "@/components/home/site-footer";
 import { SiteHeader } from "@/components/home/site-header";
 import { createClient } from "@/lib/supabase/server";
+import type { Route, Trip } from "@/types/database";
 
 export const metadata: Metadata = {
   title: "Tìm chuyến",
@@ -13,14 +14,16 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-type OpenTrip = {
-  id: string;
-  departure_time: string;
-  available_seats: number;
-  total_seats: number;
-  price_per_seat: number;
-  status: "scheduled" | "boarding";
-  routes: { origin: string; destination: string } | null;
+type OpenTrip = Pick<
+  Trip,
+  | "id"
+  | "departure_time"
+  | "available_seats"
+  | "total_seats"
+  | "price_per_seat"
+  | "status"
+> & {
+  routes: Pick<Route, "origin" | "destination"> | null;
 };
 
 async function fetchOpenTrips(): Promise<OpenTrip[]> {

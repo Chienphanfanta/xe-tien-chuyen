@@ -1,13 +1,14 @@
 import { redirect } from "next/navigation";
 
 import { createClient } from "@/lib/supabase/server";
+import type { DriverStatus } from "@/types/database";
 
 export type DriverSession = {
   userId: string;
   email: string | null;
   fullName: string | null;
   driverId: string;
-  status: "pending_verification" | "verified" | "suspended";
+  status: DriverStatus;
   rating: number | null;
   totalTrips: number;
 };

@@ -13,6 +13,14 @@ import {
 import { HOTLINE_DISPLAY, HOTLINE_TEL, SITE } from "@/constants/site";
 import { requireDriver } from "@/lib/auth/require-driver";
 import { createClient } from "@/lib/supabase/server";
+import type {
+  Booking,
+  BookingStatus,
+  Route,
+  Trip,
+  TripStatus,
+  Vehicle,
+} from "@/types/database";
 
 import { StatusActions } from "./status-actions";
 
@@ -20,51 +28,36 @@ export const metadata: Metadata = {
   title: "Chi tiết chuyến",
 };
 
-type TripStatus =
-  | "scheduled"
-  | "boarding"
-  | "in_progress"
-  | "completed"
-  | "cancelled";
-
-type BookingStatus =
-  | "pending"
-  | "confirmed"
-  | "paid"
-  | "completed"
-  | "cancelled"
-  | "no_show";
-
-type TripRecord = {
-  id: string;
-  departure_time: string;
-  total_seats: number;
-  available_seats: number;
-  price_per_seat: number;
-  pickup_note: string | null;
-  status: TripStatus;
-  routes: { origin: string; destination: string; distance_km: number | null } | null;
-  vehicles: {
-    license_plate: string;
-    brand: string | null;
-    model: string | null;
-    color: string | null;
-    seats: number;
-  } | null;
+type TripRecord = Pick<
+  Trip,
+  | "id"
+  | "departure_time"
+  | "total_seats"
+  | "available_seats"
+  | "price_per_seat"
+  | "pickup_note"
+  | "status"
+> & {
+  routes: Pick<Route, "origin" | "destination" | "distance_km"> | null;
+  vehicles: Pick<
+    Vehicle,
+    "license_plate" | "brand" | "model" | "color" | "seats"
+  > | null;
 };
 
-type BookingRecord = {
-  id: string;
-  seats: number;
-  passenger_name: string;
-  passenger_phone: string;
-  pickup_address: string;
-  dropoff_address: string;
-  total_price: number;
-  status: BookingStatus;
-  note: string | null;
-  created_at: string;
-};
+type BookingRecord = Pick<
+  Booking,
+  | "id"
+  | "seats"
+  | "passenger_name"
+  | "passenger_phone"
+  | "pickup_address"
+  | "dropoff_address"
+  | "total_price"
+  | "status"
+  | "note"
+  | "created_at"
+>;
 
 const TRIP_STATUS_LABEL: Record<TripStatus, string> = {
   scheduled: "Đã lên lịch",
