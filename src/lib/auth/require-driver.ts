@@ -28,6 +28,7 @@ export async function requireDriver(): Promise<DriverSession> {
     .single();
 
   if (!profile || profile.role !== "driver") {
+    await supabase.auth.signOut();
     redirect("/login?error=not_driver");
   }
 
@@ -37,7 +38,10 @@ export async function requireDriver(): Promise<DriverSession> {
     .eq("profile_id", user.id)
     .single();
 
-  if (!driver) redirect("/login?error=no_driver_record");
+  if (!driver) {
+    await supabase.auth.signOut();
+    redirect("/login?error=no_driver_record");
+  }
 
   return {
     userId: user.id,
